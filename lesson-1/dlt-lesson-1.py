@@ -8,7 +8,7 @@ pokemon_data = [
 ]
 
 # Set pipeline
-# dev_mode: If you set this to True, dlt will add a timestamp to your dataset name every time you 
+# dev_mode: If you set this to True, dlt will add a timestamp to your dataset name every time you
 # create a pipeline. This means a new dataset will be created each time you create a pipeline.
 # But you also get some weird schema names, so beware
 pipeline = dlt.pipeline(
@@ -19,7 +19,7 @@ pipeline = dlt.pipeline(
 )
 
 # Run data
-# I've set write_disposition="replace" to drop existing data and replace it. 
+# I've set write_disposition="replace" to drop existing data and replace it.
 # The default behavior is "append", which duplicates records
 load_info = pipeline.run(pokemon_data, table_name="pokemon", write_disposition="replace")
 print(load_info)
