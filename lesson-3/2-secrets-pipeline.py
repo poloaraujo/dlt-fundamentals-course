@@ -3,10 +3,16 @@ from dlt.sources.helpers import requests
 from dlt.sources.helpers.rest_client import RESTClient
 from dlt.sources.helpers.rest_client.auth import BearerTokenAuth
 
+# Create the following directory: lesson-3/.dlt
+# Create a fille called secrets.toml inside .dlt and add the following:
+    # [sources]
+    # access_token = "your_access_token"
+# Make sure you create a .gitignore file with .dlt in it
+
 source_access_token = dlt.secrets["sources.access_token"]
 
 @dlt.source
-def github_source(access_token=source_access_token): # <--- set the secret variable "access_token" here
+def github_source(access_token=source_access_token):
     client = RESTClient(
             base_url="https://api.github.com",
             auth=BearerTokenAuth(token=access_token)
