@@ -173,7 +173,31 @@ transformer_pipeline = dlt.pipeline(
 load_info = transformer_pipeline.run(poke_details_transformer())
 print(load_info)
 
+# This is an alternative way to get data out of one resource into a transformer
+@dlt.resource(table_name="individual_pokemon_dict_data", write_disposition="replace")
+def individual_pokemon_dict_resource():
+    yield from pokemon_dict # <--- This would yield one item at a time
 
+# MAIN DIFERENCE: you don't loop through the data
+@dlt.transformer(data_from=individual_pokemon_dict_resource, table_name='individual_pokemon_detailed_info')
+def individual_poke_details_transformer(data_item): # <--- Transformer receives one item at a time
+    id = data_item["id"]
+    url = f"https://pokeapi.co/api/v2/pokemon/{id}"
+    response = requests.get(url)
+    details = response.json()
+
+    yield details
+
+
+load_info = transformer_pipeline.run(individual_poke_details_transformer())
+print(load_info)
+
+# You can also use pipe instead of data_from, this is useful when you want to apply dlt.transformer
+# to multiple dlt.resources:
+# load_info = transformer_pipeline.run(pokemon_dict_resource | poke_details_transformer)
+
+
+########## TRANSFORMER SELECT (extra) ##########
 
 # List all table names from the database
 with transformer_pipeline.sql_client() as client:
