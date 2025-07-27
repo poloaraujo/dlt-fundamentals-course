@@ -87,3 +87,7 @@ Check lesson-7/schemas/export/github_source.schema.yaml, lines 6-10
         data_type: bigint
         nullable: false
 ```
+
+## Lesson 8
+
+**There are no questions in this section.**
