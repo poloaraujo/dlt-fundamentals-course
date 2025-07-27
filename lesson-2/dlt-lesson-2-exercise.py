@@ -77,15 +77,29 @@ def stargazers_repos_transformer(data_item):
         user["owner"] = owner
         yield user
 
-# Create a new pipeline and run it
+
+# Pipeline for github repos
+github_repos_pipeline = dlt.pipeline(
+   pipeline_name="github_repos_resource",
+   destination="duckdb",
+   dataset_name="dlt_stargazers"
+)
+
+
+# Pipeline for stargazer repos
 stargazer_transformer_pipeline = dlt.pipeline(
    pipeline_name="stargazers_repos_transformer",
    destination="duckdb",
    dataset_name="dlt_stargazers"
 )
 
+load_info = github_repos_pipeline.run(github_repos_resource())
+print(load_info)
+
 load_info = stargazer_transformer_pipeline.run(stargazers_repos_transformer())
 print(load_info)
+
+
 
 # This is a method that I wrote to go through all of the tables loaded by the pipeline. It is not part of the course
 def select_all_tables(pipeline):
@@ -117,4 +131,5 @@ def select_all_tables(pipeline):
         dataset = getattr(pipeline.dataset(dataset_type="default"), table).df()
         print(dataset)
 
+select_all_tables(github_repos_pipeline)
 select_all_tables(stargazer_transformer_pipeline)

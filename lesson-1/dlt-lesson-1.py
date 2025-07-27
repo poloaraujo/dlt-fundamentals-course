@@ -33,7 +33,7 @@ with pipeline.sql_client() as client:
 # Display the data
 print("\n")
 print("SQL Client select")
-print(sql_client_select)
+print(sql_client_select) # 6 columns and 3 rows
 
 # Here's an example of how to retrieve data from a pipeline and load it into a Pandas DataFrame or a PyArrow Table.
 # The pipeline.dataset function gets the dataset
