@@ -70,3 +70,20 @@ Run `parquet_pipeline.py`
 58<br>
 Run `5-github-pipeline-exercise.py`
 
+## Lesson 6
+
+**There are no questions in this section.**
+
+## Lesson 7
+
+**What data type does the column version in the _dlt_version table have?**
+bigint<br>
+Check lesson-7/schemas/export/github_source.schema.yaml, lines 6-10
+
+```
+  _dlt_version:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+```
