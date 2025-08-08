@@ -21,7 +21,7 @@ SQL Client select
 
 **How many columns has the github_stargazer table? Use duckdb connection, sql_client or pipeline.dataset().**
 
-23 columns<br>
+21 columns<br>
 [158 rows x 23 columns]. Run dlt-lesson-2-exercise.py to see the results.
 
 ## Lesson 3
@@ -49,24 +49,29 @@ See 2-secrets-pipeline.py, lines 83-91
 ## Lesson 4
 
 **How many columns has the issues table?**
+
 136<br>
 Run `rest_api_pipeline.py`
 
 **How many columns has the contributors table?**
+
 22<br>
 Run `rest_api_pipeline.py`
 
 **How many columns does the family table have?**
+
 37<br>
 Run `mysql_pipeline.py`
 
 **How many columns does the userdata table have?**
+
 15<br>
 Run `parquet_pipeline.py`
 
 ## Lesson 5
 
 **How many columns does the comments table have?**
+
 58<br>
 Run `5-github-pipeline-exercise.py`
 
@@ -77,6 +82,7 @@ Run `5-github-pipeline-exercise.py`
 ## Lesson 7
 
 **What data type does the column version in the _dlt_version table have?**
+
 bigint<br>
 Check lesson-7/schemas/export/github_source.schema.yaml, lines 6-10
 

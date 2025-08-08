@@ -73,8 +73,8 @@ def stargazers_repos_transformer(data_item):
 
     # You get a list of dictionaries. Iterate through the list and add columns repo and owner
     for user in response.json():
-        user["repo"] = repo
-        user["owner"] = owner
+        #user["repo"] = repo
+        #user["owner"] = owner
         yield user
 
 
@@ -90,7 +90,8 @@ github_repos_pipeline = dlt.pipeline(
 stargazer_transformer_pipeline = dlt.pipeline(
    pipeline_name="stargazers_repos_transformer",
    destination="duckdb",
-   dataset_name="dlt_stargazers"
+   dataset_name="dlt_stargazers",
+   dev_mode=True
 )
 
 load_info = github_repos_pipeline.run(github_repos_resource())
